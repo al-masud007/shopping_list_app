@@ -10,6 +10,6 @@ class GroceriesList extends StatefulWidget {
 class _GroceriesListState extends State<GroceriesList> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(actions: [Text('My Groceries')]));
+    return Scaffold(appBar: AppBar(title: Text('My Groceries')));
   }
 }

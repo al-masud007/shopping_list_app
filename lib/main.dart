@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_list/Screens/Groceries_list.dart';
+import 'package:shopping_list/Screens/groceries_list.dart';
+
+void main() {
+  runApp(const Myapp());
+}
 
 class Myapp extends StatelessWidget {
   const Myapp({super.key});
