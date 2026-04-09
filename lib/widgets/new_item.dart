@@ -12,7 +12,7 @@ class _NewItemState extends State<NewItem> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Add a new item')),
-      body: Padding(padding: EdgeInsets.all(14)),
+      body: Padding(padding: EdgeInsets.all(14), child: Text('kuch to ayega')),
     );
   }
 }
