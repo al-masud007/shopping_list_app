@@ -1,5 +1,4 @@
 import 'dart:ui';
-import 'package:shopping_list/models/category.dart';
 
 enum Categories {
   vegetable,

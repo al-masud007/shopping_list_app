@@ -1,9 +1,7 @@
 import 'dart:ui';
 
-import 'package:flutter/foundation.dart' hide Category;
-import 'package:shopping_list/models/category.dart';
-
 import 'package:flutter/material.dart';
+import 'package:shopping_list/models/category.dart';
 
 final categories = {
   Categories.vegetable: const Category(
