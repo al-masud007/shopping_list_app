@@ -45,12 +45,13 @@ class _NewItemState extends State<NewItem> {
                     child: TextFormField(
                       decoration: InputDecoration(label: Text('quantity')),
                       initialValue: '1',
+                      keyboardType: TextInputType.number,
                       validator: (value) {
                         if (value == null ||
                             value.isEmpty ||
                             int.tryParse(value) == null ||
                             int.tryParse(value)! <= 0) {
-                          return 'You must Enter a Valid Postive Number';
+                          return 'You must Enter a Valid \n Postive Number';
                         }
                         return null;
                       },
