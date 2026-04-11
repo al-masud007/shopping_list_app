@@ -21,7 +21,15 @@ class _NewItemState extends State<NewItem> {
               TextFormField(
                 maxLength: 50,
                 decoration: const InputDecoration(label: Text('Name')),
-                validator: (value) => 'demo.........',
+                validator: (value) {
+                  if (value == null ||
+                      value.isEmpty ||
+                      value.trim().length > 50 ||
+                      value.trim().length <= 1) {
+                    return 'You must Enter your Name within 50 charecter';
+                  }
+                  return null;
+                },
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -30,6 +38,15 @@ class _NewItemState extends State<NewItem> {
                     child: TextFormField(
                       decoration: InputDecoration(label: Text('quantity')),
                       initialValue: '1',
+                      validator: (value) {
+                        if (value == null ||
+                            value.isEmpty ||
+                            int.tryParse(value) == null ||
+                            int.tryParse(value)! <= 0) {
+                          return 'You must Enter Vlid Postive Number';
+                        }
+                        return null;
+                      },
                     ),
                   ),
                   SizedBox(width: 8),
@@ -55,6 +72,14 @@ class _NewItemState extends State<NewItem> {
                       onChanged: (value) {},
                     ),
                   ),
+                ],
+              ),
+              SizedBox(height: 14),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(onPressed: () {}, child: Text('Reset')),
+                  ElevatedButton(onPressed: () {}, child: Text('ADD Item')),
                 ],
               ),
             ],
