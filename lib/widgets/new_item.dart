@@ -9,6 +9,12 @@ class NewItem extends StatefulWidget {
 }
 
 class _NewItemState extends State<NewItem> {
+  final _formKey = GlobalKey<FormState>();
+
+  void _saveItem() {
+    _formKey.currentState!.validate();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,6 +22,7 @@ class _NewItemState extends State<NewItem> {
       body: Padding(
         padding: EdgeInsets.all(14),
         child: Form(
+          key: _formKey,
           child: Column(
             children: [
               TextFormField(
@@ -43,7 +50,7 @@ class _NewItemState extends State<NewItem> {
                             value.isEmpty ||
                             int.tryParse(value) == null ||
                             int.tryParse(value)! <= 0) {
-                          return 'You must Enter Vlid Postive Number';
+                          return 'You must Enter a Valid Postive Number';
                         }
                         return null;
                       },
@@ -79,7 +86,7 @@ class _NewItemState extends State<NewItem> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   TextButton(onPressed: () {}, child: Text('Reset')),
-                  ElevatedButton(onPressed: () {}, child: Text('ADD Item')),
+                  ElevatedButton(onPressed: _saveItem, child: Text('ADD Item')),
                 ],
               ),
             ],
