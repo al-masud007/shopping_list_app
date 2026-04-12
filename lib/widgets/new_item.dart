@@ -15,6 +15,8 @@ class _NewItemState extends State<NewItem> {
     _formKey.currentState!.validate();
   }
 
+  void _addItme() {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
