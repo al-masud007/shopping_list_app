@@ -35,7 +35,7 @@ class _NewItemState extends State<NewItem> {
                       value.isEmpty ||
                       value.trim().length > 50 ||
                       value.trim().length <= 1) {
-                    return 'You must Enter your Name within 50 charecter';
+                    return 'You must Enter your Name within 50 charecter!';
                   }
                   return null;
                 },
@@ -53,7 +53,7 @@ class _NewItemState extends State<NewItem> {
                             value.isEmpty ||
                             int.tryParse(value) == null ||
                             int.tryParse(value)! <= 0) {
-                          return 'You must Enter a Valid \n Postive Number';
+                          return 'Must a Valid Postive Number!';
                         }
                         return null;
                       },
@@ -88,7 +88,10 @@ class _NewItemState extends State<NewItem> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  TextButton(onPressed: () {}, child: Text('Reset')),
+                  TextButton(
+                    onPressed: _formKey.currentState!.reset,
+                    child: Text('Reset'),
+                  ),
                   ElevatedButton(onPressed: _saveItem, child: Text('ADD Item')),
                 ],
               ),
