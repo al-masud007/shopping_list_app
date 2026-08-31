@@ -14,11 +14,18 @@ class NewItem extends StatefulWidget {
 class _NewItemState extends State<NewItem> {
   @override
   Widget build(BuildContext context) {
+    final formkey = GlobalKey<FormState>();
+
+    void saveItem() {
+      formkey.currentState!.validate();
+    }
+
     return Scaffold(
       appBar: AppBar(title: const Text('Add a new item')),
       body: Padding(
         padding: const EdgeInsets.all(12),
         child: Form(
+          key: formkey,
           child: Column(
             children: [
               TextFormField(
@@ -29,7 +36,7 @@ class _NewItemState extends State<NewItem> {
                       value.isEmpty ||
                       value.trim().length <= 1 ||
                       value.length <= 50) {
-                    return 'must be between 1 t 50 charecter';
+                    return 'must be between 1 to 50 charecter';
                   }
                   return null;
                 },
@@ -83,8 +90,13 @@ class _NewItemState extends State<NewItem> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  TextButton(onPressed: () {}, child: Text('Reset')),
-                  ElevatedButton(onPressed: () {}, child: Text('Add Item')),
+                  TextButton(
+                    onPressed: () {
+                      formkey.currentState!.reset();
+                    },
+                    child: Text('Reset'),
+                  ),
+                  ElevatedButton(onPressed: saveItem, child: Text('Add Item')),
                 ],
               ),
             ],
