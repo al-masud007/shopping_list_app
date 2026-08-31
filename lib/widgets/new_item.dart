@@ -1,5 +1,8 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:shopping_list/data/categories.dart';
+import 'package:shopping_list/models/category.dart';
 // import 'package:shopping_list/models/category.dart';
 
 class NewItem extends StatefulWidget {
@@ -15,9 +18,16 @@ class _NewItemState extends State<NewItem> {
   @override
   Widget build(BuildContext context) {
     final formkey = GlobalKey<FormState>();
+    var enteredName = '';
+    var enteredQuntity = 1;
+    var selectedCtegory = categories[Categories.vegetable]!;
+    print(enteredQuntity);
+    print(enteredName);
 
     void saveItem() {
-      formkey.currentState!.validate();
+      if (formkey.currentState!.validate()) {
+        formkey.currentState!.save();
+      }
     }
 
     return Scaffold(
@@ -35,10 +45,14 @@ class _NewItemState extends State<NewItem> {
                   if (value == null ||
                       value.isEmpty ||
                       value.trim().length <= 1 ||
-                      value.length <= 50) {
+                      value.length >= 50) {
                     return 'must be between 1 to 50 charecter';
                   }
                   return null;
+                },
+                onSaved: (value) {
+                  enteredName = value!;
+                  print(enteredName);
                 },
               ),
               Row(
@@ -57,11 +71,15 @@ class _NewItemState extends State<NewItem> {
                         }
                         return null;
                       },
+                      onSaved: (value) {
+                        enteredQuntity = int.parse(value!);
+                      },
                     ),
                   ),
                   SizedBox(width: 8),
                   Expanded(
                     child: DropdownButtonFormField(
+                      initialValue: selectedCtegory,
                       decoration: InputDecoration(label: Text('Categories')),
                       items: [
                         for (final category in categories.entries)
@@ -81,7 +99,11 @@ class _NewItemState extends State<NewItem> {
                           ),
                       ],
 
-                      onChanged: (value) {},
+                      onChanged: (value) {
+                        setState(() {
+                          selectedCtegory = value!;
+                        });
+                      },
                     ),
                   ),
                 ],
