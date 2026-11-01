@@ -37,14 +37,6 @@ class _NewItemState extends State<NewItem> {
           'category': _selectedCategory.title,
         }),
       );
-      // Navigator.of(context).pop(
-      //   GroceryItem(
-      //     id: DateTime.now().toString(),
-      //     name: _enteredName,
-      //     quantity: _enteredQuantity,
-      //     category: _selectedCategory,
-      //   ),
-      // );
       print(response.body);
       print(response.statusCode);
 
