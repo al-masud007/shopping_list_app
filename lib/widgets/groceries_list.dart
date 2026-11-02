@@ -36,6 +36,8 @@ class _GroceriesListState extends State<GroceriesList> {
             (catItem) => catItem.value.title == item.value['category'],
           )
           .value;
+      print('ID: ${item.key}');
+      print('DATA: ${item.value}');
       loadedItem.add(
         GroceryItem(
           id: item.key,
@@ -56,9 +58,9 @@ class _GroceriesListState extends State<GroceriesList> {
       context,
     ).push<GroceryItem>(MaterialPageRoute(builder: (ctx) => const NewItem()));
 
-    // _loadItem();
-
-    if (newItem == null) return;
+    if (newItem == null) {
+      return;
+    }
 
     setState(() {
       _groceryItems.add(newItem);
