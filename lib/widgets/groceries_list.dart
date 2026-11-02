@@ -29,14 +29,14 @@ class _GroceriesListState extends State<GroceriesList> {
       'flutter-prep-c4caa-default-rtdb.firebaseio.com',
       'shopping_list.json',
     );
-    final response = await http.get(url);
-    if (response.statusCode >= 400) {
+    final getresponse = await http.get(url);
+    if (getresponse.statusCode >= 400) {
       setState(() {
         _error = 'There is a problem to fetching data. Try again later';
       });
     }
 
-    final Map<String, dynamic> listData = json.decode(response.body);
+    final Map<String, dynamic> listData = json.decode(getresponse.body);
     final List<GroceryItem> loadedItem = [];
     for (final item in listData.entries) {
       final category = categories.entries
@@ -76,10 +76,24 @@ class _GroceriesListState extends State<GroceriesList> {
     });
   }
 
-  void _removeItem(GroceryItem item) {
+  void _removeItem(GroceryItem item) async {
+    final index = _groceryItems.indexOf(item);
+
     setState(() {
       _groceryItems.remove(item);
     });
+    final url = Uri.https(
+      'flutter-prep-c4caa-default-rtdb.firebaseio.com',
+      'shopping_list/${item.id}.json',
+    );
+
+    final dltResponse = await http.delete(url);
+
+    if (dltResponse.statusCode >= 400) {
+      setState(() {
+        _groceryItems.insert(index, item);
+      });
+    }
   }
 
   @override
