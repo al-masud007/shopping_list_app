@@ -42,8 +42,8 @@ class _NewItemState extends State<NewItem> {
           'category': _selectedCategory.title,
         }),
       );
-      print(response.body);
-      print(response.statusCode);
+      // print(response.body);
+      // print(response.statusCode);
       final Map<String, dynamic> resData = json.decode(response.body);
 
       if (!context.mounted) {
